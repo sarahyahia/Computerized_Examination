@@ -1,0 +1,37 @@
+{% extends "_partials/base.html" %}
+{% load static %}
+{% block title %}
+Design Exam
+{% endblock %}
+
+{% block content %}
+{% comment %} <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'afterlogin' %}">Home</a></li>
+    <li class="breadcrumb-item">Exam</li>
+    <li class="breadcrumb-item">Design An Exam</li>
+    <li class="breadcrumb-item active">Designed Exam</li>
+</ol> {% endcomment %}
+<div class="container mt-5">
+    {% include "_partials/messages.html" %}
+</div>
+{% for question in questions %}
+<div class="panel panel-white card">
+    <div class="panel-body table-responsive card-body">
+        <p class="red_colr">Question: </p><p class="ans_hd_bk h4">{{question.question}}?</p>
+            <div class="ml-4 card-text">
+            <p>(1) {{question.option1}}</p>
+            <p>(2) {{question.option2}}</p>
+            <p>(3) {{question.option3}}</p>
+            </div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Answer</button>
+            <div class="collapse mt-4" id="collapseExample">
+                <div class="card card-body">
+                    <p>Ans: {{ question.answer }}</p>
+                    <p>Objective: {% if question.objective == 1 %}Reminding{% elif question.objective == 2 %}Understanding{% elif question.objective == 3 %}Creativity{% endif %}</p>
+                    <p>Difficulty: {% if question.difficulty == 1 %}Simple{% elif question.difficulty == 2 %}Difficult{% endif %}</p>
+                </div>
+            </div>
+        </div>
+</div>
+{% endfor %}
+{% endblock %}

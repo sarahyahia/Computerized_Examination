@@ -1,0 +1,50 @@
+{% extends "_partials/base.html" %}
+{% block title %}
+{{course.course_name}} questions
+{% endblock %}
+{% block content %}
+    <div class="row mx-3 ">
+        <div class="col-md-10">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'afterlogin' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'course-chapters' course.id %}">{{ course.course_name}} Chapters</a></li>
+                <li class="breadcrumb-item active">Ch{{chapter}} questions</li>
+
+            </ol>
+        </div>
+        {% if request.user.is_staff %}
+        <div class="col-md-2">
+            <a href="{% url 'add-question' course.id chapter %}">
+                <button class="btn btn-primary btn-sm" {% if number_of_questions >= 12 %} disabled {% endif %}>Add question <i class="fas fa-plus"></i> </button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+<div class="container mt-5">
+    {% include "_partials/messages.html" %}
+</div>
+{% for question in questions %}
+<div class="panel panel-white card">
+    <div class="panel-body table-responsive card-body">
+        {% if request.user.is_staff %}
+        <a href="{% url 'delete-question' question.id%}"><i class="fas fa-times float-end"></i></a> 
+        {% endif %}
+        <p class="red_colr">Question: </p><p class="ans_hd_bk h4">{{question.question}}?</p>
+            <div class="ml-4 card-text">
+            <p>(1) {{question.option1}}</p>
+            <p>(2) {{question.option2}}</p>
+            <p>(3) {{question.option3}}</p>
+            </div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">View Answer</button>
+            <div class="collapse mt-4" id="collapseExample">
+                <div class="card card-body">
+                    <p>Ans: {{ question.answer }}</p>
+                    <p>Objective: {% if question.objective == 1 %}Reminding{% elif question.objective == 2 %}Understanding{% elif question.objective == 3 %}Creativity{% endif %}</p>
+                    <p>Difficulty: {% if question.difficulty == 1 %}Simple{% elif question.difficulty == 2 %}Difficult{% endif %}</p>
+                </div>
+            </div>
+        </div>
+</div>
+{% endfor %}
+{% endblock %}

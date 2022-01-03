@@ -1,0 +1,35 @@
+{% extends "_partials/base.html" %}
+{% block title %}
+Courses List
+{% endblock %}
+{% block content %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'afterlogin' %}">Home</a></li>
+    <li class="breadcrumb-item active">Courses</li>
+</ol>
+<div class="container mt-5">
+    {% include "_partials/messages.html" %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">number of chapters</th>
+            <th scope="col">Chapters</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr class="table-dark">
+            <th scope="row">{{course.pk}}</th>
+            <td>{{course.course_name}}</td>
+            <td>{{course.number_of_chapters}}</td>
+            <td><a href="{% url 'course-chapters' course.id %}"><i class="fas fa-eye"></i></a></td>
+            <td><a href="{% url 'edit-course' course.id %}"><i class="fas fa-edit"></i></a> - <a href="{% url 'delete-course' course.id %}"><i class="fas fa-trash-alt"></i></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

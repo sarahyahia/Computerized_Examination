@@ -1,0 +1,104 @@
+{% load static %}
+
+{% comment %} 
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'afterlogin' %}">
+                    Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'courses' %}">
+                    Manage Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                    Income
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Summary</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+            </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                    Expenses Summary
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                    Income Summary
+                    </a>
+                </li>
+            </ul>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Settings</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+                <span data-feather="plus-circle"></span>
+            </a>
+            </h6>
+            <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                    General
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                    Account
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </nav> {% endcomment %}
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                    <span class="fs-4"></span>
+                </a>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                    <a href="{% url 'afterlogin' %}" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+                        Home
+                    </a>
+                    </li>
+                    <li>
+                    <a href="{% url 'courses' %}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                        Courses
+                    </a>
+                    </li>
+                    <li>
+                    <a href="{% url 'design_home' %}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+                        Design Exam
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script type="text/javascript">
+        /* global bootstrap: false */
+    (function () {
+        'use strict'
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    })()
+  </script>

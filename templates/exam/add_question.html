@@ -1,0 +1,63 @@
+{% extends "_partials/base.html" %}
+{% block title %}
+Add Course
+{% endblock %}
+{% block content %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'afterlogin' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'course-chapters' course.id %}">{{ course.course_name}} Chapters</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'course-chapter-questions' course.id chapter %}">Ch{{chapter}} questions</a></li>
+    <li class="breadcrumb-item active">add question</li>
+</ol>
+<div class="container mt-5">
+    <form method="post" action="{% url 'add-question' course.id chapter %}">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Create A Question</legend>
+            {% include "_partials/messages.html" %}
+            
+            <div class="form-group">
+                <label for="exampleTextarea" class="form-label mt-2">Question</label>
+                <textarea class="form-control" id="exampleTextarea" name="question" required placeholder="Example: What is the relation calculus?" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Option 1</label>
+                <input type="text" class="form-control" name='option1' required aria-describedby="emailHelp" placeholder="Example: It is a kind of procedural language">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Option 2</label>
+                <input type="text" class="form-control" name='option2' required aria-describedby="emailHelp" placeholder="Example: It is a non-procedural language">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Option 3</label>
+                <input type="text" class="form-control" name='option3' required aria-describedby="emailHelp" placeholder="Example: It is a high-level language">
+            </div>
+            <div class="form-group">
+                <label for="exampleSelect1" class="form-label mt-2">Answer</label>
+                <select class="form-select" name="answer" required id="exampleSelect1">
+                    <option value="Option1">Option1</option>
+                    <option value="Option2">Option2</option>
+                    <option value="Option3">Option3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Difficulty level</label>
+                <select class="form-select" required name="difficulty" id="difficulty">
+                    <option value="1">simple</option>
+                    <option value="2">difficult</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Objective</label>
+                <select class="form-select" required name="objective" id="exampleInput">
+                    <option value="1">reminding</option>
+                    <option value="2">understanding</option>
+                    <option value="3">creativity</option>
+                </select>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-lg btn-primary mt-4">Submit</button>
+    </form>
+</div>
+{% endblock %}

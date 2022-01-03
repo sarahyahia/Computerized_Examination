@@ -1,0 +1,29 @@
+{% extends "_partials/base.html" %}
+{% block title %}
+Add Course
+{% endblock %}
+{% block content %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'afterlogin' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'courses' %}">Courses</a></li>
+    <li class="breadcrumb-item active">Update The Course</li>
+</ol>
+<div class="container mt-5">
+    <form method="post" action="{% url 'edit-course' course.id %}">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Update The Course</legend>
+            {% include "_partials/messages.html" %}
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-4">Course Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" name='course_name' aria-describedby="emailHelp" placeholder="Enter course name" value={{course.course_name}}>
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of chapters</label>
+                <input type="number" name='number_of_chapters' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter number of chapters" value={{course.number_of_chapters}}>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

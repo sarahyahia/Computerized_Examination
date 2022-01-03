@@ -1,0 +1,35 @@
+
+{% extends "_partials/base.html" %}
+{% block title %}
+home
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    {% include "_partials/messages.html" %}
+      <div class="row">  
+        <div class="col-md-4 col-xl-4">
+          <a href="{% url 'courses' %}" style="text-decoration: none;color:white;">
+          <div class="card bg-c-green order-card">
+            <div class="card-block">
+              <h6 class="m-b-20">Available Courses </h6>
+              <h2 class="text-right"><i class="fas fa-chalkboard-teacher f-left"></i><span>{{courses}}</span></h2>
+            </div>
+          </div>
+        </a>
+        </div>
+    
+        <div class="col-md-4 col-xl-4">
+          <a href="{% url 'design_home' %}" style="text-decoration: none;color:white;">
+          <div class="card bg-c-pink order-card">
+            <div class="card-block">
+              <h6 class="m-b-20">Design An Exam</h6>
+              <h2 class="text-right"><i class="fas fa-question-circle f-left"></i></h2>
+            </div>
+          </div>
+        </a>
+        </div>
+  
+        
+      </div>
+    </div>
+{% endblock %}

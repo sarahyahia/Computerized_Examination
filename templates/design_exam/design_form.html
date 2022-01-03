@@ -1,0 +1,49 @@
+{% extends "_partials/base.html" %}
+{% load static %}
+{% block title %}
+Design Exam
+{% endblock %}
+
+{% block content %}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'afterlogin' %}">Home</a></li>
+    <li class="breadcrumb-item">Exam</li>
+    <li class="breadcrumb-item active">Design An Exam</li>
+</ol>
+<div class="container mt-5">
+    <form method="post" action="{% url 'design_exam' course.id %}">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Design An Exam</legend>
+            {% include "_partials/messages.html" %}
+            {% for chapter in chapters %}
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of questions/chapter {{chapter}}</label>
+                <input type="number" min="0" max="12" class="form-control" id="exampleInputEmail1" name="{{chapter}}" aria-describedby="emailHelp" placeholder="Enter number of questions per chapter">
+            </div>
+            {% endfor %}
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of simple questions</label>
+                <input type="number" min="0" name='simple' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter number of simple questions">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of difficult questions</label>
+                <input type="number" min="0" name='difficult' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter number of difficult questions">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of reminding questions</label>
+                <input type="number" min="0" name='reminding' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter number of reminding questions">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of understanding questions</label>
+                <input type="number" min="0" name='understanding' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter number of understanding questions">
+            </div>
+            <div class="form-group">
+                <label for="exampleInput" class="form-label mt-2">Number of creativity questions</label>
+                <input type="number" min="0" name='creativity' class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter number of creativity questions">
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
